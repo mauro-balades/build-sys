@@ -1,6 +1,9 @@
 #!usr/bin/env sh
 
-cd ..
+if [ ! ${1} == "--skip"]
+then
+    cd ..
+fi
 mkdir dist
 cd test
 nim c -o:../dist/test.o -r test.nim
