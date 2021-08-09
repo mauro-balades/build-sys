@@ -297,7 +297,7 @@ proc asgnShell*(
         let streamRes = outStream.readLine(line)
         if streamRes:
           if dokOutput in debugConfig:
-            echo "[shell]: ", line
+            echo "\e[93m[shell]\e[0m: ", line
           res = res & "\n" & line
         else:
           # should mean stream is finished, i.e. process stoped
@@ -314,7 +314,7 @@ proc asgnShell*(
         let rem = outStream.readAll()
         res &= rem
         for line in rem.split("\n"):
-          echo "[shell]: ", line
+          echo "\e[93m[shell]\e[0m: ", line
       else:
         res &= outStream.readAll()
 
@@ -327,11 +327,11 @@ proc asgnShell*(
 
     if exitCode != 0:
       if dokRuntime in debugConfig:
-        echo "Error when executing: ", cmd
+        echo "\x1b[31m[error]\e[0m: Executing ", cmd
 
       if dokError in debugConfig:
         for line in errorText.split("\n"):
-          echo "[error]: ", line
+          echo "\x1b[31m[error]\e[0m: ", line
 
     pid.close()
     result = (output: res, error: errorText, exitCode: exitCode)
@@ -353,7 +353,7 @@ proc execShell*(
   ## wrapper around `asgnShell`, which calls the commands and handles
   ## return values.
   if dokCommand in debugConfig:
-    echo "[exec]: ", cmd
+    echo "\e[96m[exec]\e[0m : ", cmd
 
   let cwd = getCurrentDir()
   result = asgnShell(cmd, debugConfig, options)
@@ -364,7 +364,7 @@ proc execShell*(
       # usage
       if result[0].len > 0:
         for line in splitLines(result[0]):
-          echo "[shell]: ", line
+          echo "\e[93m[shell]\e[0m: ", line
 
   when defined shellThrowException:
     if result.exitCode != 0:
