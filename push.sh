@@ -1,3 +1,3 @@
 nim c -o:./build.o -r build.nim
 clear
-./build.o ${1}
+./build.o "${1}"

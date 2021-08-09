@@ -35,6 +35,8 @@ proc runTask*(this: Bake, taskname: string): void =
 
     this.runTaskHelper(taskname, deps, seen)      
 
+    # TODO: check for a cycle
+
     for tsk in deps:
         let t = this.tasks.getOrDefault(tsk)
 
