@@ -24,10 +24,10 @@ proc runTaskHelper(this: Bake, taskname: string, deps: var seq[string], seen: va
     var tsk = this.tasks.getOrDefault(taskname)
 
     seen.add(taskname)
+    deps.add(taskname)
     if len(tsk.requires) > 0:
         for c in this.tasksgraph[tsk.name]:
             this.runTaskHelper(c, deps, seen)
-    deps.add(taskname)
 
 proc runTask*(this: Bake, taskname: string): void =
     var deps = newSeq[string]()
