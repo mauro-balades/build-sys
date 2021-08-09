@@ -1,2 +1,6 @@
 dist/
 build.o
+
+nimcache/
+nimblecache/
+htmldocs/

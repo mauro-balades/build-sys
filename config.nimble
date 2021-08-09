@@ -3,7 +3,7 @@
 version     = "1.0.0"
 author      = "bs"
 description = "A good alternative to Makefile."
-license     = "MIT"
+license     = "GNU"
 
 bin = @["main"]
 srcDir = "src"

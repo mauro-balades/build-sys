@@ -1,4 +1,5 @@
 # CODE FROM https://github.com/Vindaar/shell/blob/master/shell.nim (With some changes)
+# TODO: good error handling
 
 import macros
 when not defined(NimScript):

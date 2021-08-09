@@ -1,3 +1,5 @@
+#!usr/bin/env sh
+
 cd ..
 mkdir dist
 cd test
